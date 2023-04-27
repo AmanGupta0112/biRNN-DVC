@@ -23,12 +23,14 @@ class DataIngestionPreparation:
                     TRAINING_BATCH_SIZE).prefetch(tf.data.AUTOTUNE)
         self.test_ds = self.test_ds.batch(TRAINING_BATCH_SIZE).prefetch(tf.data.AUTOTUNE)
         logging.info(f"Shuffle and Batched datasets!")
+        return self.train_ds, self.test_ds
 
     def encode_on_train_data(self):
         self.encoder = tf.keras.layers.TextVectorization(
             max_tokens=VOCAB_SIZE)
         self.encoder.adapt(self.train_ds.map(lambda text, label: text))
         logging.info(f"Encoding is done!")
+        return self.encoder
     
     def save_artifacts(self):
         self._save_encode()

@@ -5,3 +5,4 @@ training:
   VOCAB_SIZE : 1000
   OUTPUT_DIM : 64
   EPOCHS : 10
+  OUTPUT_DIM : 64
