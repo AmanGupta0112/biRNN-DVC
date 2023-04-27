@@ -1,9 +1,9 @@
-import logging
-from src.utils import save_json
+from src.utils import save_bin
 import time
 from src import logging
 from src.constants import *
-from src.components import StageClass
+from src.components import DataIngestionPreparation
+from src import logging 
 
 
 STAGE = "Stage name" ## <<< change stage name 
@@ -14,8 +14,12 @@ STAGE = "Stage name" ## <<< change stage name
 
 
 def main():
-    obj = StageClass()
-
+    data_ing_and_prep = DataIngestionPreparation()
+    data_ing_and_prep.load_dataset()
+    data_ing_and_prep.shuffle_and_batch()
+    data_ing_and_prep.encode_on_train_data()
+    data_ing_and_prep.save_artifacts()
+    
 
 if __name__ == '__main__':
     try:
